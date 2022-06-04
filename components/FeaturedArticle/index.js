@@ -1,22 +1,28 @@
-export default function FeaturedArticle() {
+import Link from "next/link";
+export default function FeaturedArticle({
+  slug,
+  title,
+  publishedOn,
+  readingTime,
+}) {
   return (
-    <div className="bg-black/50 p-2 rounded-[30px]">
-      <div
-        style={{
-          backgroundImage:
-            "url(./assets/blogs-media/raycast-vehicle-engine/thumbnail.png)",
-        }}
-        className="rounded-[20px] h-96 w-full bg-center bg-no-repeat bg-cover"
-      ></div>
-      <div className="p-4 mt-2">
-        <div className="text-white text-4xl">
-          Drive a Tesla Cybertruck or literally any car on your browser with
-          Threejs
-        </div>
-        <div className="text-xl opacity-50 text-white mt-2">
-          February 23, 2022 • 10 min read
-        </div>
-      </div>
+    <div className="bg-black/50 p-2 rounded-[3rem]">
+      <Link href={slug}>
+        <a>
+          <div
+            style={{
+              backgroundImage: `url(./assets/blogs-media/${slug}/thumbnail.png)`,
+            }}
+            className="rounded-[2.5rem] h-72 md:h-96 w-full bg-center bg-no-repeat bg-cover"
+          ></div>
+          <div className="p-4 mt-2">
+            <div className="text-white text-4xl">{title}</div>
+            <div className="text-xl opacity-50 text-white mt-2">
+              {publishedOn} • {readingTime} read
+            </div>
+          </div>
+        </a>
+      </Link>
     </div>
   );
 }

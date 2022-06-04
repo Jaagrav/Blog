@@ -11,7 +11,7 @@ import {
 
 export default function Footer() {
   return (
-    <div className="mt-12 relative h-fit w-full border-t-[1px] border-white/10 contain-paint">
+    <div className="mt-12 relative h-fit w-full border-t-[1px] border-white/10 contain-paint px-8 md:px-32">
       <h1 className="h-fit w-fit max-w-full absolute m-auto top-0 left-0 right-0 bottom-0 text-center text-border-thick text-[24vw] md:text-[14vw] opacity-5 text-white">
         Jaagrav Seal
       </h1>
@@ -91,7 +91,7 @@ export default function Footer() {
         <div className="text-white text-lg text-center pb-6">
           © {new Date().getFullYear()}{" "}
           <a
-            href="https://github.com/Jaagrav/Jaagrav"
+            href="https://github.com/Jaagrav/Jaagrav-Blog"
             target="_blank"
             className="transition text-pink-400 hover:underline underline-offset-8 text-lg"
             rel="noreferrer"

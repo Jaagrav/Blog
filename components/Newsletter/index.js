@@ -2,7 +2,7 @@ import { FiRss } from "react-icons/fi";
 
 export default function Newsletter() {
   return (
-    <div className="bg-black/50 p-6 rounded-[30px] mt-6">
+    <div className="bg-black/50 p-6 rounded-[3rem] mt-6">
       <div className="text-white text-4xl">
         Get notified everytime I post!!!
       </div>
