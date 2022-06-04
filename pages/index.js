@@ -1,5 +1,6 @@
 import {
   Header,
+  Footer,
   SEO,
   FeaturedArticle,
   Article,
@@ -33,6 +34,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
