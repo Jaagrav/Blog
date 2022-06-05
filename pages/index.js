@@ -54,11 +54,14 @@ export default function Home({ data }) {
 }
 
 const fs = require("fs");
+const { join, resolve } = require("path");
 
 export async function getServerSideProps({ req, params }) {
-  const files = [];
-  fs.readdirSync("./blogs").forEach((file) => {
-    const { data } = matter.read(`./blogs/${file}`);
+  const files = [],
+    resolvedPath = resolve(process.cwd(), "blogs");
+
+  fs.readdirSync(resolvedPath).forEach((file) => {
+    const { data } = matter.read(join(resolvedPath, `/${file}`));
     files.push({
       file: file.split(".")[0],
       fileData: {

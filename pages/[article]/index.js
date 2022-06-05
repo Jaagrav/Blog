@@ -68,10 +68,13 @@ export default function Blog(props) {
   );
 }
 
+const { join, resolve } = require("path");
+
 export async function getServerSideProps({ req, params }) {
   const { article } = params;
 
-  const file = matter.read(`./blogs/${article}.md`);
+  const resolvedPath = resolve(process.cwd(), "blogs");
+  const file = matter.read(join(resolvedPath, `/${article}.md`));
 
   return {
     props: {
