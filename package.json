@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@mdx-js/react": "^2.1.1",
+    "@sendgrid/client": "^7.7.0",
     "axios": "^0.27.2",
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",

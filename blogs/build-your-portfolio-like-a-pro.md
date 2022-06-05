@@ -88,7 +88,7 @@ Before I made my own portfolio, I had gathered a lot of inspirations from Dribbb
 
 ### And finally,
 
-[![Jaagrav Seal](./assets/blogs-media/build-your-portfolio-like-a-pro/thumbnail.png)](https://jaagrav.in)
+[![Jaagrav Seal](./assets/blogs-media/build-your-portfolio-like-a-pro/thumbnail.webp)](https://jaagrav.in)
 
 [Jaagrav Seal](https://jaagrav.in) by me!!
 

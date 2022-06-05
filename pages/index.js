@@ -18,7 +18,11 @@ export default function Home({ data }) {
     };
   return (
     <div className="">
-      <SEO title="Blogs / Jaagrav" />
+      <SEO
+        title="Blogs / Jaagrav"
+        description="Checkout Jaagrav's blog where he writes about technology, javascript and a lot more than that. Visit the link to find out!"
+        image="https://blog.jaagrav.in/assets/images/home-page.webp"
+      />
       <Header />
       <div className="px-8 md:px-32">
         <div className="max-w-screen-xl mx-auto">
@@ -50,7 +54,9 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const { data } = await axios.get(`http://localhost:3000/api/get-blog-data`);
+  const { data } = await axios.get(
+    `${process.env.NEXT_PUBLIC_URL}/api/get-blog-data`
+  );
 
   return {
     props: {

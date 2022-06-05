@@ -1,14 +1,13 @@
 import Link from "next/link";
 
 export default function Article({ slug, title, publishedOn, readingTime }) {
-  console.log(slug);
   return (
     <Link href={slug}>
       <a>
         <div className="bg-black/50 p-2 rounded-[2rem] grid grid-cols-[30%_70%] mb-6 relative z-10">
           <div
             style={{
-              backgroundImage: `url(./assets/blogs-media/${slug}/thumbnail.png)`,
+              backgroundImage: `url(./assets/blogs-media/${slug}/thumbnail.webp)`,
             }}
             className="rounded-[1.5rem] h-full w-full bg-center bg-no-repeat bg-cover"
           ></div>

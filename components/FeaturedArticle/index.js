@@ -11,7 +11,7 @@ export default function FeaturedArticle({
         <a>
           <div
             style={{
-              backgroundImage: `url(./assets/blogs-media/${slug}/thumbnail.png)`,
+              backgroundImage: `url(./assets/blogs-media/${slug}/thumbnail.webp)`,
             }}
             className="rounded-[2.5rem] h-72 md:h-96 w-full bg-center bg-no-repeat bg-cover"
           ></div>

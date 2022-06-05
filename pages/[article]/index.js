@@ -15,7 +15,11 @@ export default function Blog(props) {
   console.log(props);
   return (
     <div>
-      <SEO title={`${props?.data?.file?.data?.title} / Blogs / Jaagrav`} />
+      <SEO
+        title={`${props?.data?.file?.data?.title} / Blogs / Jaagrav`}
+        description={props?.data?.file?.data?.excerpt}
+        image={`https://blog.jaagrav.in/assets/blogs-media/${props?.article}/thumbnail.webp`}
+      />
       <Header isCollapsible={true} />
       <div className="px-8 md:px-32">
         <div className="md:mt-8 relative z-10 max-w-screen-xl mx-auto ">
@@ -31,7 +35,7 @@ export default function Blog(props) {
       <div
         className="max-w-screen-xl mx-auto my-6 h-[60vh] w-full relative z-10 bg-center bg-no-repeat bg-cover md:rounded-[1.5rem]"
         style={{
-          backgroundImage: `url(./assets/blogs-media/${props?.article}/thumbnail.png)`,
+          backgroundImage: `url(./assets/blogs-media/${props?.article}/thumbnail.webp)`,
         }}
       ></div>
       <div className="px-8 md:px-32">
@@ -70,9 +74,12 @@ export default function Blog(props) {
 export async function getServerSideProps({ params }) {
   const { article } = params;
 
-  const { data } = await axios.post(`http://localhost:3000/api/get-blog`, {
-    article,
-  });
+  const { data } = await axios.post(
+    `${process.env.NEXT_PUBLIC_URL}/api/get-blog`,
+    {
+      article,
+    }
+  );
 
   return {
     props: {
