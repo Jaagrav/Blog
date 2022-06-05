@@ -7,7 +7,7 @@ import {
   Newsletter,
 } from "../components";
 
-import axios from "axios";
+import * as matter from "gray-matter";
 
 export default function Home({ data }) {
   const featuredArticleName = "raycast-vehicle-engine",
@@ -53,14 +53,28 @@ export default function Home({ data }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
-  const { data } = await axios.get(
-    `${process.env.NEXT_PUBLIC_URL}/api/get-blog-data`
-  );
+const fs = require("fs");
+
+export async function getServerSideProps({ req, params }) {
+  const files = [];
+  fs.readdirSync("./blogs").forEach((file) => {
+    const { data } = matter.read(`./blogs/${file}`);
+    files.push({
+      file: file.split(".")[0],
+      fileData: {
+        title: data.title,
+        publishedOn: data.publishedOn,
+        excerpt: data.excerpt,
+        readingTime: data.readingTime,
+      },
+    });
+  });
 
   return {
     props: {
-      data,
+      data: {
+        files,
+      },
     },
   };
 }

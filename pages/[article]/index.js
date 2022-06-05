@@ -1,10 +1,8 @@
 import { Header, Footer, SEO } from "../../components";
 
-import { useRouter } from "next/router";
-
 import axios from "axios";
 
-import { useEffect, useState } from "react";
+import * as matter from "gray-matter";
 
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
@@ -16,19 +14,18 @@ export default function Blog(props) {
   return (
     <div>
       <SEO
-        title={`${props?.data?.file?.data?.title} / Blogs / Jaagrav`}
-        description={props?.data?.file?.data?.excerpt}
+        title={`${props?.file?.title} / Blogs / Jaagrav`}
+        description={props?.file?.excerpt}
         image={`https://blog.jaagrav.in/assets/blogs-media/${props?.article}/thumbnail.webp`}
       />
       <Header isCollapsible={true} />
       <div className="px-8 md:px-32">
         <div className="md:mt-8 relative z-10 max-w-screen-xl mx-auto ">
           <div className="text-white text-6xl leading-[4.5rem]">
-            {props?.data?.file?.data?.title}
+            {props?.file?.title}
           </div>
           <div className="text-white text-2xl mt-2 opacity-75">
-            {props?.data?.file?.data?.publishedOn} •{" "}
-            {props?.data?.file?.data?.readingTime} read
+            {props?.file?.publishedOn} • {props?.file?.readingTime} read
           </div>
         </div>
       </div>
@@ -62,7 +59,7 @@ export default function Blog(props) {
               },
             }}
           >
-            {props?.data?.file?.content}
+            {props?.file?.content}
           </ReactMarkdown>
         </div>
       </div>
@@ -71,19 +68,14 @@ export default function Blog(props) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ req, params }) {
   const { article } = params;
 
-  const { data } = await axios.post(
-    `${process.env.NEXT_PUBLIC_URL}/api/get-blog`,
-    {
-      article,
-    }
-  );
+  const file = matter.read(`./blogs/${article}.md`);
 
   return {
     props: {
-      data,
+      file: { ...file.data, content: file.content },
       article,
     },
   };
