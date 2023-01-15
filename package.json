@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev": "next dev"
   },
   "dependencies": {
     "@mdx-js/react": "^2.1.1",
