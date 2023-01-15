@@ -57,8 +57,8 @@ const fs = require("fs");
 const { join, resolve } = require("path");
 
 export async function getServerSideProps({ req, params }) {
-  const files = [],
-    resolvedPath = resolve(process.cwd(), "blogs");
+  let files = [];
+  let resolvedPath = resolve(process.cwd(), "blogs");
 
   fs.readdirSync(resolvedPath).forEach((file) => {
     const { data } = matter.read(join(resolvedPath, `/${file}`));
@@ -71,6 +71,9 @@ export async function getServerSideProps({ req, params }) {
         readingTime: data.readingTime,
       },
     });
+    files = files.sort(function(a, b){
+      return new Date(b.fileData.publishedOn) - new Date(a.fileData.publishedOn);
+    })
   });
 
   return {

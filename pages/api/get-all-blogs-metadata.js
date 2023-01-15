@@ -5,7 +5,7 @@ const fs = require("fs");
 
 export default function getBlog(req,res) {
     const resolvedPath = resolve(process.cwd(), "blogs");
-    const files = [];
+    let files = [];
 
     try {
         fs.readdirSync(resolvedPath).forEach((file) => {
@@ -20,6 +20,10 @@ export default function getBlog(req,res) {
                 },
             });
         });
+
+        files = files.sort(function(a, b){
+            return new Date(b.metadata.publishedOn) - new Date(a.metadata.publishedOn);
+        })
 
         res.status(200).send(files)
     }    catch (e) {
